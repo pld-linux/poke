@@ -1,14 +1,16 @@
 Summary:	An interactive, extensible editor for binary data
 Summary(pl.UTF-8):	Interaktywny, rozszerzalny edytor do danych binarnych
 Name:		poke
-Version:	1.0
+Version:	1.1
 Release:	1
 License:	GPL v3+
 Group:		Applications/Editors
 Source0:	https://ftp.gnu.org/gnu/poke/%{name}-%{version}.tar.gz
-# Source0-md5:	a7423661eed9705e7d2b9adc7f977139
+# Source0-md5:	16a67041574e65d9bf993378c58852a9
 Patch0:		%{name}-info.patch
 URL:		http://www.jemarch.net/poke
+BuildRequires:	bison >= 3.6
+BuildRequires:	flex
 BuildRequires:	gawk
 BuildRequires:	gc-devel
 BuildRequires:	gettext-tools >= 0.19.8
@@ -85,6 +87,19 @@ Static libpoke library.
 %description static -l pl.UTF-8
 Statyczna biblioteka libpoke.
 
+%package -n emacs-poke-mode
+Summary:	Poke mode for Emacs
+Summary(pl.UTF-8):	Tryb poke dla Emacsa
+Group:		Applications/Editors
+Requires:	%{name} = %{version}-%{release}
+Requires:	emacs
+
+%description -n emacs-poke-mode
+Poke mode for Emacs.
+
+%description -n emacs-poke-mode -l pl.UTF-8
+Tryb poke dla Emacsa.
+
 %prep
 %setup -q
 %patch0 -p1
@@ -117,6 +132,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog NEWS README
 %attr(755,root,root) %{_bindir}/pk-elfextractor
+%attr(755,root,root) %{_bindir}/pk-strings
 %attr(755,root,root) %{_bindir}/poke
 %{_datadir}/poke
 %{_mandir}/man1/poke.1*
@@ -139,3 +155,9 @@ rm -rf $RPM_BUILD_ROOT
 %files static
 %defattr(644,root,root,755)
 %{_libdir}/libpoke.a
+
+%files -n emacs-poke-mode
+%defattr(644,root,root,755)
+%{_datadir}/emacs/site-lisp/poke-mode.el
+%{_datadir}/emacs/site-lisp/poke-map-mode.el
+%{_datadir}/emacs/site-lisp/poke-ras-mode.el

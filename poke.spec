@@ -1,12 +1,12 @@
 Summary:	An interactive, extensible editor for binary data
 Summary(pl.UTF-8):	Interaktywny, rozszerzalny edytor do danych binarnych
 Name:		poke
-Version:	1.3
+Version:	1.4
 Release:	1
 License:	GPL v3+
 Group:		Applications/Editors
 Source0:	https://ftp.gnu.org/gnu/poke/%{name}-%{version}.tar.gz
-# Source0-md5:	9cdc2fee956ccde3ccaf920df3f67e80
+# Source0-md5:	cef3b4d531fa2296d85b3ecc1ab073ff
 Patch0:		%{name}-info.patch
 URL:		http://www.jemarch.net/poke
 BuildRequires:	bison >= 3.6

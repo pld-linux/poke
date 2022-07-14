@@ -1,12 +1,12 @@
 Summary:	An interactive, extensible editor for binary data
 Summary(pl.UTF-8):	Interaktywny, rozszerzalny edytor do danych binarnych
 Name:		poke
-Version:	1.4
+Version:	2.3
 Release:	1
 License:	GPL v3+
 Group:		Applications/Editors
 Source0:	https://ftp.gnu.org/gnu/poke/%{name}-%{version}.tar.gz
-# Source0-md5:	cef3b4d531fa2296d85b3ecc1ab073ff
+# Source0-md5:	fad9943f0cab9a52ba527f2ae7e447ee
 Patch0:		%{name}-info.patch
 URL:		http://www.jemarch.net/poke
 BuildRequires:	bison >= 3.6
@@ -105,7 +105,8 @@ Tryb poke dla Emacsa.
 %patch0 -p1
 
 %build
-%configure
+%configure \
+	--enable-gui
 %{__make}
 
 %install
@@ -115,6 +116,9 @@ rm -rf $RPM_BUILD_ROOT
 	DESTDIR=$RPM_BUILD_ROOT
 
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/libpoke.la
+
+# already in vim-rt
+%{__rm} -r $RPM_BUILD_ROOT%{_datadir}/vim
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -131,6 +135,7 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog NEWS README
+%attr(755,root,root) %{_bindir}/pk-bin2poke
 %attr(755,root,root) %{_bindir}/pk-elfextractor
 %attr(755,root,root) %{_bindir}/pk-strings
 %attr(755,root,root) %{_bindir}/poke
@@ -151,6 +156,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libpoke.so
 %{_includedir}/libpoke.h
+%{_pkgconfigdir}/poke.pc
 
 %files static
 %defattr(644,root,root,755)

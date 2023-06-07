@@ -1,12 +1,12 @@
 Summary:	An interactive, extensible editor for binary data
 Summary(pl.UTF-8):	Interaktywny, rozszerzalny edytor do danych binarnych
 Name:		poke
-Version:	2.3
+Version:	3.2
 Release:	1
 License:	GPL v3+
 Group:		Applications/Editors
 Source0:	https://ftp.gnu.org/gnu/poke/%{name}-%{version}.tar.gz
-# Source0-md5:	fad9943f0cab9a52ba527f2ae7e447ee
+# Source0-md5:	e1d84522e7a0adfa8c8afc2c2484e0a3
 Patch0:		%{name}-info.patch
 URL:		http://www.jemarch.net/poke
 BuildRequires:	bison >= 3.6
@@ -21,10 +21,9 @@ BuildRequires:	libtextstyle-devel >= 0.20.5
 BuildRequires:	ncurses-devel >= 5.0
 BuildRequires:	pkgconfig
 BuildRequires:	readline-devel
-BuildRequires:	tcl-devel
 BuildRequires:	texinfo
-BuildRequires:	tk-devel
 Requires:	libtextstyle >= 0.20.5
+Obsoletes:	poke-gui < 3
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -39,18 +38,6 @@ jest ograniczony do edycji podstawowych jednostek, takich jak bity czy
 bajty - udostępnia dojrzały proceduralny, interaktywny język
 programowania zaprojektowany do opisu struktur danych i operowania na
 nich.
-
-%package gui
-Summary:	GUI for poke
-Summary(pl.UTF-8):	Graficzny interfejs użytkownika do poke
-Group:		X11/Applications/Editors
-Requires:	%{name} = %{version}-%{release}
-
-%description gui
-Tk GUI for poke.
-
-%description gui -l pl.UTF-8
-Oparty na Tk graficzny interfejs użytkownika do poke.
 
 %package libs
 Summary:	poke shared library
@@ -105,8 +92,7 @@ Tryb poke dla Emacsa.
 %patch0 -p1
 
 %build
-%configure \
-	--enable-gui
+%configure
 %{__make}
 
 %install
@@ -139,13 +125,11 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/pk-elfextractor
 %attr(755,root,root) %{_bindir}/pk-strings
 %attr(755,root,root) %{_bindir}/poke
+%attr(755,root,root) %{_bindir}/poked
 %{_datadir}/poke
 %{_mandir}/man1/poke.1*
+%{_mandir}/man1/poked.1*
 %{_infodir}/poke.info*
-
-%files gui
-%defattr(644,root,root,755)
-%attr(755,root,root) %{_bindir}/poke-gui
 
 %files libs
 %defattr(644,root,root,755)
@@ -157,6 +141,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libpoke.so
 %{_includedir}/libpoke.h
 %{_pkgconfigdir}/poke.pc
+%{_aclocaldir}/poke.m4
 
 %files static
 %defattr(644,root,root,755)
@@ -164,6 +149,5 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -n emacs-poke-mode
 %defattr(644,root,root,755)
-%{_datadir}/emacs/site-lisp/poke-mode.el
 %{_datadir}/emacs/site-lisp/poke-map-mode.el
 %{_datadir}/emacs/site-lisp/poke-ras-mode.el

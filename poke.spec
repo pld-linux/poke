@@ -9,6 +9,7 @@ Source0:	https://ftp.gnu.org/gnu/poke/%{name}-%{version}.tar.gz
 # Source0-md5:	e1d84522e7a0adfa8c8afc2c2484e0a3
 Patch0:		%{name}-info.patch
 URL:		http://www.jemarch.net/poke
+BuildRequires:	automake
 BuildRequires:	bison >= 3.6
 BuildRequires:	flex
 BuildRequires:	gawk

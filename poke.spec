@@ -1,12 +1,12 @@
 Summary:	An interactive, extensible editor for binary data
 Summary(pl.UTF-8):	Interaktywny, rozszerzalny edytor do danych binarnych
 Name:		poke
-Version:	3.3
+Version:	4.0
 Release:	1
 License:	GPL v3+
 Group:		Applications/Editors
 Source0:	https://ftp.gnu.org/gnu/poke/%{name}-%{version}.tar.gz
-# Source0-md5:	25461e6e9032fa4d3ed089576990c159
+# Source0-md5:	e15c42faa189c099f4d92032aa40047e
 Patch0:		%{name}-info.patch
 URL:		http://www.jemarch.net/poke
 BuildRequires:	automake
@@ -123,10 +123,11 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog NEWS README
 %attr(755,root,root) %{_bindir}/pk-bin2poke
-%attr(755,root,root) %{_bindir}/pk-elfextractor
+%attr(755,root,root) %{_bindir}/pk-jojopatch
 %attr(755,root,root) %{_bindir}/pk-strings
 %attr(755,root,root) %{_bindir}/poke
 %attr(755,root,root) %{_bindir}/poked
+%attr(755,root,root) %{_bindir}/pokefmt
 %{_datadir}/poke
 %{_mandir}/man1/poke.1*
 %{_mandir}/man1/poked.1*
@@ -135,7 +136,7 @@ rm -rf $RPM_BUILD_ROOT
 %files libs
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libpoke.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libpoke.so.0
+%attr(755,root,root) %ghost %{_libdir}/libpoke.so.1
 
 %files devel
 %defattr(644,root,root,755)

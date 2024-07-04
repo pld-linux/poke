@@ -1,12 +1,12 @@
 Summary:	An interactive, extensible editor for binary data
 Summary(pl.UTF-8):	Interaktywny, rozszerzalny edytor do danych binarnych
 Name:		poke
-Version:	4.0
+Version:	4.2
 Release:	1
 License:	GPL v3+
 Group:		Applications/Editors
 Source0:	https://ftp.gnu.org/gnu/poke/%{name}-%{version}.tar.gz
-# Source0-md5:	e15c42faa189c099f4d92032aa40047e
+# Source0-md5:	afd1ac0c7f2ba12d77150166ff6e5cfc
 Patch0:		%{name}-info.patch
 URL:		http://www.jemarch.net/poke
 BuildRequires:	automake
@@ -131,6 +131,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/poke
 %{_mandir}/man1/poke.1*
 %{_mandir}/man1/poked.1*
+%{_mandir}/man1/pokefmt.1*
 %{_infodir}/poke.info*
 
 %files libs
